@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    margin-top: 120px;
+    background: gray;
+
+}
+
+.container {
+    width: 400px;
+    margin: 0 auto;
+    padding: 40px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: white;
+    
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgb(95, 1, 1);
+    text-transform: uppercase;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px;
+    background-color: rgb(95, 1, 1);
+    color: rgb(255, 255, 255);
+    border: none;
+    cursor: pointer;
+}
+
+#predictionResult {
+    margin-top: 20px;
+    font-weight: bold;
+}
