@@ -1,0 +1,33 @@
+< !DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    
+    <!-- Make it compatible for mobile devices -->
+    <meta name="viewport" content ="width=device-width. initial-scale=1.0">
+    
+    <title>Loan Shceme</title>
+    
+</head>
+
+<body style ="background: #000;">
+    <div class ="login">
+        <h1 style="color:Blue;">Loan Scheme Prediction</h1>
+        <form action="{{url_for('predict')}}"method="post">
+            <input type="text" name="loan_amount" placeholder="How much do you want?" required="required" /><br> 
+             <input type="text" name="loan_amount" placeholder="really" required="required" /><p> 
+             
+             <button type="submit" class="btn btn-primary btn-block btn-large">Predict lender count</button></p>
+            </form>
+            
+          <br>
+          <br>
+          <h4 style="color:Blue;">
+          {{prediction_text }} </h4>
+        
+      </div>
+      
+      
+<body>
+<html>
+            

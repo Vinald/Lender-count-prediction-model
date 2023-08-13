@@ -2,90 +2,88 @@
 <html>
 <head>
     <meta charset="UTF-8">
+
+    <!-- Make it compatible for mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- linking the css file -->
-    <link rel="stylesheet" href="styles.css">
-
-    <title>Loan Status Prediction</title>
-
+    <title>Loan Scheme</title>
+    
+    <!-- CSS Styles -->
     <style>
         body {
-    font-family: Arial, sans-serif;
-    margin-top: 120px;
-    background: gray;
-
-    }
-
-    .container {
-        width: 400px;
-        margin: 0 auto;
-        padding: 40px;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        background: white;
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
         
-    }
-
-    h1 {
-        text-align: center;
-        margin-bottom: 20px;
-        color: rgb(95, 1, 1);
-        text-transform: uppercase;
-    }
-
-    form {
-        display: flex;
-        flex-direction: column;
-    }
-
-    label {
-        margin-bottom: 5px;
-    }
-
-    input {
-        padding: 5px;
-        margin-bottom: 10px;
-    }
-
-    button {
-        padding: 10px;
-        background-color: rgb(95, 1, 1);
-        color: rgb(255, 255, 255);
-        border: none;
-        cursor: pointer;
-    }
-
-    #predictionResult {
-        margin-top: 20px;
-        font-weight: bold;
-    }
+        .login {
+            width: 300px;
+            margin: 100px auto; /* Center the form on the page */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .login h1 {
+            color: purple;
+            text-align: center;
+        }
+        
+        .login input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .login button {
+            width: 100%;
+            padding: 10px;
+            background-color: purple;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .login button:hover {
+            background-color: #800080;
+        }
+        
+        .login h4 {
+            color: purple;
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
 </head>
+
 <body>
-
-    <div class="container">
-
+    <!-- Login form container -->
+    <div class="login">
+        <!-- Updated Heading -->
         <h1>Lender Count Prediction</h1>
-
-        <form action="/predict" method="POST" id="loanForm">
-
-            <label for="loanAmount">Loan Amount:</label>
-            <input type="number" id="loanAmount" name="loanAmount" required>
-
-            <br>
-            <label for="repaymentTerm">Repayment Term (months):</label>
-            <input type="number" id="repaymentTerm" name="repaymentTerm" required>
-
-            <br>
-            <button type="submit">Predict</button>
+        
+        <!-- Form to submit data to 'predict' route in the server -->
+        <form action="{{url_for('predict')}}" method="post">
+            <!-- Input field for the loan amount -->
+            <input type="text" name="loan_amount" placeholder="Loan Amount" required="required" /><br>
             
+            <!-- Input field for the repayment term -->
+            <input type="text" name="repayment_term" placeholder="Repayment Term" required="required" />
+            
+            <!-- Button to submit the form -->
+            <p><button type="submit">Predict lender count</button></p>
         </form>
-        <div id="predictionResult">
-            {% if prediction_result %}
-                {{ prediction_result }}
-            {% endif %}
-        </div>
+
+        <br>
+        <br>
+
+        <!-- Heading to display the prediction result -->
+        <h4>{{prediction_text}}</h4>
     </div>
 </body>
 </html>

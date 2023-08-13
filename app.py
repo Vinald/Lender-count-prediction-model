@@ -1,40 +1,39 @@
 import os
+from flask import Flask, render_template, request
 import pickle
 import numpy as np
-from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
-model_file_path = 'model.pkl'
+model_path = 'lr.pkl'
 
-if not os.path.exists(model_file_path):
-    raise FileNotFoundError(f"Model file '{model_file_path}' was not found.")
+if not os.path.exists(model_path):
+    raise FileNotFoundError(f"Model file '{model_path}' was not found.")
 
-with open(model_file_path, 'rb') as f:
+with open(model_path, 'rb') as f:
     model = pickle.load(f)
-
+    
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        loan_amount = int(request.form['loanAmount'])
-        repayment_term = int(request.form['repaymentTerm'])
-
+        # Get the values from the form
+        loan_amount = int(request.form['loan_amount'])
+        repayment_term = int(request.form['repayment_term'])
+        
         features = np.array([[loan_amount, repayment_term]])
         predictions = model.predict(features)
-        prediction_result = f'Predicted Status: {predictions[0]}'
 
-        return render_template('index.html', 
-                               prediction_result=prediction_result)
+        prediction_result = f'Predicted results: {predictions[0]}'
 
+        return render_template('index.html', prediction_text=prediction_result)
     except Exception as e:
-        return render_template('index.html', 
-                               prediction_result=f'Error: {str(e)}')
+        print("Error:", e)
+        return render_template('index.html', prediction_text="Error occurred. Please try again.")
 
 
 if __name__ == '__main__':
